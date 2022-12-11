@@ -1,0 +1,70 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.LocalPlayer
+local KeyWindow = OrionLib:MakeWindow({IntroText = "傻逼DX密钥系统 ",Name = "DX 密钥", HidePremium = false, SaveConfig = true, ConfigFolder = "Doors"})
+
+OrionLib:MakeNotification({
+    Name = "User",
+    Content = "你已用 : "..Player.Name.."登入了 ",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+
+_G.Key = "DXuwu"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+    print("EnteredCorrectKey")
+end
+
+function CorrectKeyNotification()
+    OrionLib:MakeNotification({
+        Name = "Correct Key",
+        Content = "Key Correct!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+function IncorrectKeyNotification()
+    OrionLib:MakeNotification({
+        Name = "密钥错误",
+        Content = "错误密钥!",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+local KeyTab = KeyWindow:MakeTab({
+	Name = "密钥系统",
+	Icon = "",
+	PremiumOnly = false
+})
+
+KeyTab:AddTextbox({
+	Name = "输入密钥",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.KeyInput = Value
+	end	  
+})
+
+KeyTab:AddButton({
+	Name = "确定!",
+	Callback = function()
+      		if _G.KeyInput == _G.Key then
+            MakeScriptHub()
+            CorrectKeyNotification()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/DXuwu/onion-gui/main/onion%20gui.lua"))()
+            else
+                IncorrectKeyNotification()
+        end
+
+  	end    
+})
+
+
+
+
+
+
